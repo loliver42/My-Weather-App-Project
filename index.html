@@ -15,28 +15,32 @@
   <body>
     <div class="container">
       <header>
-        <form>
-          <input type="search" placeholder="Enter a city..." required />
-          <input type="submit" value="Search" />
+        <form class="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city..."
+            required
+            class="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
       <main>
-        <h1>New Jersey</h1>
-        <div>
-          <p>
-            Monday 9:15, Sunny <br />
-            Humidity: 66%, Wind: 3.13mph
-          </p>
+        <div class="weather-data">
+          <div>
+            <h1 class="weather-city">New Jersey</h1>
+
+            <p class="weather-details">
+              Monday 9:15, Sunny <br />
+              Humidity: <strong> 66%</strong>, Wind: <strong> 3.13mph</strong>
+            </p>
+          </div>
+          <div class="weather-temperature">
+            <div class="weather-icon">☀️</div>
+            <div class="weather-app-temperature">35</div>
+            <div class="weather-unit">°F</div>
+          </div>
         </div>
-        <div>☀️ 35°F</div>
-        <ul>
-          <li>Tue</li>
-          <li>Wed</li>
-          <li>Thur</li>
-          <li>Fri</li>
-          <li>Sat</li>
-          <li>Sun</li>
-        </ul>
       </main>
       <footer>
         Built by
