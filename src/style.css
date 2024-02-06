@@ -60,8 +60,7 @@ main {
   margin-left: 10px;
 }
 .weather-icon {
-  font-size: 55px;
-  margin-top: 14px;
+  width: 86px;
 }
 .weather-unit {
   margin-top: 16px;
