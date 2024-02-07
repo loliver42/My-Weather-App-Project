@@ -56,6 +56,12 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 searchCity("Trenton");
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+
+  return days[date.getDay()];
+}
 
 function getForcast(city) {
   let apiKey = "ffa4fe680act3be1832a3445o0790076";
@@ -64,23 +70,29 @@ function getForcast(city) {
 }
 
 function displayForcast(response) {
-  let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
   let forcastHTML = "";
 
-  days.forEach(function (day) {
-    forcastHTML =
-      forcastHTML +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forcastHTML =
+        forcastHTML +
+        `
       <div class="weather-forcast-day">
-        <div class="weather-forcast-date">${day}</div>
-        <div class="weather-forcast-icon">⛅</div>
+        <div class="weather-forcast-date">${formatDay(day.time)}</div>
+        <div class="weather-forcast-icon">
+        <img src="${day.condition.icon_url}"/class="weather-forcast-icon">
+       
+        </div>
         <div class="weather-forcast-temperatures">
           <div class="weather-forcast-temperature">
-            <strong> 45°</strong>
+            <strong> ${Math.round(day.temperature.maximum)}°</strong>
           </div>
-          <div class="weather-forcast-temperature">20°</div>
+          <div class="weather-forcast-temperature">${Math.round(
+            day.temperature.minimum
+          )}°</div>
         </div>
       </div>`;
+    }
   });
   let forcastElement = document.querySelector("#forcast");
   forcastElement.innerHTML = forcastHTML;
