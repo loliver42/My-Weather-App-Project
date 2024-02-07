@@ -54,3 +54,28 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 
 searchCity("Trenton");
+
+function displayForcast() {
+  let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
+  let forcastHTML = "";
+
+  days.forEach(function (day) {
+    forcastHTML =
+      forcastHTML +
+      `
+      <div class="weather-forcast-day">
+        <div class="weather-forcast-date">${day}</div>
+        <div class="weather-forcast-icon">⛅</div>
+        <div class="weather-forcast-temperatures">
+          <div class="weather-forcast-temperature">
+            <strong> 45°</strong>
+          </div>
+          <div class="weather-forcast-temperature">20°</div>
+        </div>
+      </div>`;
+  });
+  let forcastElement = document.querySelector("#forcast");
+  forcastElement.innerHTML = forcastHTML;
+}
+
+displayForcast();
