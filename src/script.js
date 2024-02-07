@@ -17,6 +17,8 @@ function updateWeather(response) {
   windSpeedElement.innerHTML = `${response.data.wind.speed}mph`;
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src= "${response.data.condition.icon_url}" class="weather-icon"/>`;
+
+  getForcast(response.data.city);
 }
 function formatDate(date) {
   let minutes = date.getMinutes();
@@ -55,7 +57,13 @@ searchFormElement.addEventListener("submit", handleSearch);
 
 searchCity("Trenton");
 
-function displayForcast() {
+function getForcast(city) {
+  let apiKey = "ffa4fe680act3be1832a3445o0790076";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
+  axios(apiUrl).then(displayForcast);
+}
+
+function displayForcast(response) {
   let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
   let forcastHTML = "";
 
@@ -77,5 +85,3 @@ function displayForcast() {
   let forcastElement = document.querySelector("#forcast");
   forcastElement.innerHTML = forcastHTML;
 }
-
-displayForcast();
